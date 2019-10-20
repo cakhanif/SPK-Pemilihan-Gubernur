@@ -1,8 +1,8 @@
 <?php
-class Kriteria{
+class criteria{
 	
 	private $conn;
-	private $table_name = "kriteria";
+	private $table_name = "criteria";
 	
 	public $id;
 	public $kt;

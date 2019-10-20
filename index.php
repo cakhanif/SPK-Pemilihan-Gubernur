@@ -1,20 +1,20 @@
 <?php
 include_once 'header.php';
-include_once 'includes/nilai.inc.php';
-$pro3 = new Nilai($db);
+include_once 'includes/value.inc.php';
+$pro3 = new value($db);
 $stmt3 = $pro3->readAll();
-include_once 'includes/kandidat.inc.php';
-$pro1 = new Kandidat($db);
+include_once 'includes/candidate.inc.php';
+$pro1 = new candidate($db);
 $stmt1 = $pro1->readAll();
 $stmt4 = $pro1->readAll();
-include_once 'includes/kriteria.inc.php';
-$pro2 = new Kriteria($db);
+include_once 'includes/criteria.inc.php';
+$pro2 = new criteria($db);
 $stmt2 = $pro2->readAll();
 ?>
 		<div class="row">
 		  <div class="col-xs-12 col-sm-12 col-md-4">
 		  	<div class="page-header">
-			  <h5>Nilai Preferensi</h5>
+			  <h5>value Preferensi</h5>
 			</div>
 			<div class="panel panel-default">
 			  <div class="panel-body">
@@ -32,7 +32,7 @@ $stmt2 = $pro2->readAll();
 		  </div>
 		  <div class="col-xs-12 col-sm-12 col-md-4">
 		  	<div class="page-header">
-			  <h5>Kriteria</h5>
+			  <h5>criteria</h5>
 			</div>
 			<div class="panel panel-default">
 			  <div class="panel-body">
@@ -51,7 +51,7 @@ $stmt2 = $pro2->readAll();
 		  </div>
 		  <div class="col-xs-12 col-sm-12 col-md-4">
 		  	<div class="page-header">
-			  <h5>Kandidat</h5>
+			  <h5>candidate</h5>
 			</div>
 			<div class="panel panel-default">
 			  <div class="panel-body">
@@ -60,7 +60,7 @@ $stmt2 = $pro2->readAll();
 			    	$no=1;
 					while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)){
 					?>
-				  	<li><?php echo $no++ ?>. <?php echo $row1['nama_kandidat'] ?></li>
+				  	<li><?php echo $no++ ?>. <?php echo $row1['nama_candidate'] ?></li>
 				  	<?php
 					}
 				  	?>
@@ -91,11 +91,11 @@ $stmt2 = $pro2->readAll();
 	            text: 'Grafik Perangkingan '
 	         },
 	         xAxis: {
-	            categories: ['Kandidat']
+	            categories: ['candidate']
 	         },
 	         yAxis: {
 	            title: {
-	               text: 'Jumlah Nilai'
+	               text: 'Jumlah value'
 	            }
 	         },
 	              series:            
@@ -106,8 +106,8 @@ $stmt2 = $pro2->readAll();
 	                 //data yang diambil dari database dimasukan ke variable nama dan data
 	                 //
 	                  {
-	                      name: '<?php echo $row4['nama_kandidat'] ?>',
-	                      data: [<?php echo $row4['hasil_kandidat'] ?>]
+	                      name: '<?php echo $row4['nama_candidate'] ?>',
+	                      data: [<?php echo $row4['hasil_candidate'] ?>]
 	                  },
 	                  <?php } ?>
 	            ]

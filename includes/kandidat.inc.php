@@ -1,8 +1,8 @@
 <?php
-class Kandidat{
+class candidate{
 	
 	private $conn;
-	private $table_name = "kandidat";
+	private $table_name = "candidate";
 	
 	public $id;
 	public $kt;
@@ -28,7 +28,7 @@ class Kandidat{
 	
 	function readAll(){
 
-		$query = "SELECT * FROM ".$this->table_name." ORDER BY id_kandidat ASC";
+		$query = "SELECT * FROM ".$this->table_name." ORDER BY id_candidate ASC";
 		$stmt = $this->conn->prepare( $query );
 		$stmt->execute();
 		
@@ -38,7 +38,7 @@ class Kandidat{
 	// used when filling up the update product form
 	function readOne(){
 		
-		$query = "SELECT * FROM " . $this->table_name . " WHERE id_kandidat=? LIMIT 0,1";
+		$query = "SELECT * FROM " . $this->table_name . " WHERE id_candidate=? LIMIT 0,1";
 
 		$stmt = $this->conn->prepare( $query );
 		$stmt->bindParam(1, $this->id);
@@ -46,8 +46,8 @@ class Kandidat{
 
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		
-		$this->id = $row['id_kandidat'];
-		$this->kt = $row['nama_kandidat'];
+		$this->id = $row['id_candidate'];
+		$this->kt = $row['nama_candidate'];
 	}
 	
 	// update the product
@@ -56,9 +56,9 @@ class Kandidat{
 		$query = "UPDATE 
 					" . $this->table_name . " 
 				SET 
-					nama_kandidat = :kt
+					nama_candidate = :kt
 				WHERE
-					id_kandidat = :id";
+					id_candidate = :id";
 
 		$stmt = $this->conn->prepare($query);
 
@@ -76,7 +76,7 @@ class Kandidat{
 	// delete the product
 	function delete(){
 	
-		$query = "DELETE FROM " . $this->table_name . " WHERE id_kandidat = ?";
+		$query = "DELETE FROM " . $this->table_name . " WHERE id_candidate = ?";
 		
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);

@@ -1,8 +1,8 @@
 <?php
-class Rangking{
+class ranking{
 	
 	private $conn;
-	private $table_name = "rangking";
+	private $table_name = "ranking";
 	
 	public $ia;
 	public $ik;
@@ -44,7 +44,7 @@ class Rangking{
 	
 	function readKhusus(){
 
-		$query = "SELECT * FROM kandidat a, kriteria b, rangking c where a.id_kandidat=c.id_kandidat and b.id_kriteria=c.id_kriteria order by a.id_kandidat asc";
+		$query = "SELECT * FROM candidate a, criteria b, ranking c where a.id_candidate=c.id_candidate and b.id_kriteria=c.id_kriteria order by a.id_candidate asc";
 		$stmt = $this->conn->prepare( $query );
 		$stmt->execute();
 		
@@ -53,7 +53,7 @@ class Rangking{
 	
 	function readR($a){
 
-		$query = "SELECT * FROM kandidat a, kriteria b, rangking c where a.id_kandidat=c.id_kandidat and b.id_kriteria=c.id_kriteria and c.id_kandidat='$a'";
+		$query = "SELECT * FROM candidate a, criteria b, ranking c where a.id_candidate=c.id_candidate and b.id_kriteria=c.id_kriteria and c.id_candidate='$a'";
 		$stmt = $this->conn->prepare( $query );
 		$stmt->execute();
 		
@@ -83,7 +83,7 @@ class Rangking{
 	
 	function readHasil($a){
 		
-		$query = "SELECT sum(bobot_normalisasi) as bbn FROM " . $this->table_name . " WHERE id_kandidat='$a' LIMIT 0,1";
+		$query = "SELECT sum(bobot_normalisasi) as bbn FROM " . $this->table_name . " WHERE id_candidate='$a' LIMIT 0,1";
 
 		$stmt = $this->conn->prepare( $query );
 		$stmt->execute();
@@ -94,7 +94,7 @@ class Rangking{
 	// used when filling up the update product form
 	function readOne(){
 		
-		$query = "SELECT * FROM " . $this->table_name . " WHERE id_kandidat=? and id_kriteria=? LIMIT 0,1";
+		$query = "SELECT * FROM " . $this->table_name . " WHERE id_candidate=? and id_kriteria=? LIMIT 0,1";
 
 		$stmt = $this->conn->prepare( $query );
 		$stmt->bindParam(1, $this->ia);
@@ -103,7 +103,7 @@ class Rangking{
 
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		
-		$this->ia = $row['id_kandidat'];
+		$this->ia = $row['id_candidate'];
 		$this->ik = $row['id_kriteria'];
 		$this->nn = $row['nilai_rangking'];
 	}
@@ -116,7 +116,7 @@ class Rangking{
 				SET 
 					nilai_rangking = :nn
 				WHERE
-					id_kandidat = :ia 
+					id_candidate = :ia 
 				AND
 					id_kriteria = :ik";
 
@@ -142,7 +142,7 @@ class Rangking{
 					nilai_normalisasi = :nn2,
 					bobot_normalisasi = :nn3
 				WHERE
-					id_kandidat = :ia 
+					id_candidate = :ia 
 				AND
 					id_kriteria = :ik";
 
@@ -164,11 +164,11 @@ class Rangking{
 	function hasil(){
 
 		$query = "UPDATE 
-					kandidat
+					candidate
 				SET 
-					hasil_kandidat = :has
+					hasil_candidate = :has
 				WHERE
-					id_kandidat = :ia";
+					id_candidate = :ia";
 
 		$stmt = $this->conn->prepare($query);
 
@@ -186,7 +186,7 @@ class Rangking{
 	// delete the product
 	function delete(){
 	
-		$query = "DELETE FROM " . $this->table_name . " WHERE id_kandidat = ? and id_kriteria = ?";
+		$query = "DELETE FROM " . $this->table_name . " WHERE id_candidate = ? and id_kriteria = ?";
 		
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->ia);

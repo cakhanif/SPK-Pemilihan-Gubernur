@@ -46,18 +46,18 @@ $db = $config->getConnection();
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
 			<li><a href="index.php">Home</a></li>
-			<li><a href="nilai.php">Nilai</a></li>
-			<li><a href="kriteria.php">Kriteria</a></li>
-			<li><a href="kandidat.php">Kandidat</a></li>
-			<li><a href="rangking.php">Rangking</a></li>
-			<li><a href="laporan.php">Laporan</a></li>
+			<li><a href="value.php">value</a></li>
+			<li><a href="criteria.php">criteria</a></li>
+			<li><a href="candidate.php">candidate</a></li>
+			<li><a href="ranking.php">ranking</a></li>
+			<li><a href="report.php">report</a></li>
 		  </ul>
 		  <ul class="nav navbar-nav navbar-right">
-			<li><a href="profil.php"><?php echo $_SESSION['nama_lengkap'] ?></a></li>
+			<li><a href="profile.php"><?php echo $_SESSION['nama_lengkap'] ?></a></li>
 			<li class="dropdown">
 			  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
 			  <ul class="dropdown-menu">
-				<li><a href="profil.php">Profil</a></li>
+				<li><a href="profile.php">profile</a></li>
 				<li><a href="user.php">Manejer Pengguna</a></li>
 				<li role="separator" class="divider"></li>
 				<li><a href="logout.php">Logout</a></li>
