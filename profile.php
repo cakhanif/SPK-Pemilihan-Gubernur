@@ -17,7 +17,7 @@ if($_POST){
 ?>
 <div class="alert alert-success alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>Berhasil!</strong> Anda telah mengubah profil sendiri.
+  <strong>Berhasil!</strong> You have changed your profile.
 </div>
 <?php
     } else{
