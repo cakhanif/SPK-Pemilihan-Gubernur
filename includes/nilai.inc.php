@@ -1,8 +1,8 @@
 <?php
-class Nilai{
+class value{
 	
 	private $conn;
-	private $table_name = "nilai";
+	private $table_name = "value";
 	
 	public $id;
 	public $kt;
