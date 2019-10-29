@@ -1,17 +1,17 @@
 <?php
 include_once 'header.php';
-include_once 'includes/candidate.inc.php';
-include_once 'includes/criteria.inc.php';
-include_once 'includes/value.inc.php';
-$pgn1 = new candidate($db);
-$pgn2 = new criteria($db);
-$pgn3 = new value($db);
+include_once 'includes/Candidate.php';
+include_once 'includes/Criteria.php';
+include_once 'includes/Value.php';
+$pgn1 = new Candidate($db);
+$pgn2 = new Criteria($db);
+$pgn3 = new Value($db);
 
 $ia = isset($_GET['ia']) ? $_GET['ia'] : die('ERROR: missing ID.');
 $ik = isset($_GET['ik']) ? $_GET['ik'] : die('ERROR: missing ID.');
 
 include_once 'includes/ranking.inc.php';
-$eks = new ranking($db);
+$eks = new Ranking($db);
 
 $eks->ia = $ia;
 $eks->ik = $ik;

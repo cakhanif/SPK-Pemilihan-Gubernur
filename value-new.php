@@ -2,8 +2,8 @@
 include_once 'header.php';
 if($_POST){
 	
-	include_once 'includes/value.inc.php';
-	$eks = new value($db);
+	include_once 'includes/Value.php';
+	$eks = new Value($db);
 
 	$eks->kt = $_POST['kt'];
 	$eks->jm = $_POST['jm'];

@@ -1,8 +1,9 @@
 <?php
-class value{
+
+class Candidate {
 	
 	private $conn;
-	private $table_name = "value";
+	private $table_name = "candidate";
 	
 	public $id;
 	public $kt;
@@ -14,10 +15,9 @@ class value{
 	
 	function insert(){
 		
-		$query = "insert into ".$this->table_name." values('',?,?)";
+		$query = "insert into ".$this->table_name." values('',?,'')";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->kt);
-		$stmt->bindParam(2, $this->jm);
 		
 		if($stmt->execute()){
 			return true;
@@ -29,7 +29,7 @@ class value{
 	
 	function readAll(){
 
-		$query = "SELECT * FROM ".$this->table_name." ORDER BY id_nilai ASC";
+		$query = "SELECT * FROM ".$this->table_name." ORDER BY id_candidate ASC";
 		$stmt = $this->conn->prepare( $query );
 		$stmt->execute();
 		
@@ -39,7 +39,7 @@ class value{
 	// used when filling up the update product form
 	function readOne(){
 		
-		$query = "SELECT * FROM " . $this->table_name . " WHERE id_nilai=? LIMIT 0,1";
+		$query = "SELECT * FROM " . $this->table_name . " WHERE id_candidate=? LIMIT 0,1";
 
 		$stmt = $this->conn->prepare( $query );
 		$stmt->bindParam(1, $this->id);
@@ -47,9 +47,8 @@ class value{
 
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		
-		$this->id = $row['id_nilai'];
-		$this->kt = $row['ket_nilai'];
-		$this->jm = $row['jum_nilai'];
+		$this->id = $row['id_candidate'];
+		$this->kt = $row['nama_candidate'];
 	}
 	
 	// update the product
@@ -58,15 +57,13 @@ class value{
 		$query = "UPDATE 
 					" . $this->table_name . " 
 				SET 
-					ket_nilai = :kt,  
-					jum_nilai = :jm
+					nama_candidate = :kt
 				WHERE
-					id_nilai = :id";
+					id_candidate = :id";
 
 		$stmt = $this->conn->prepare($query);
 
 		$stmt->bindParam(':kt', $this->kt);
-		$stmt->bindParam(':jm', $this->jm);
 		$stmt->bindParam(':id', $this->id);
 		
 		// execute the query
@@ -80,7 +77,7 @@ class value{
 	// delete the product
 	function delete(){
 	
-		$query = "DELETE FROM " . $this->table_name . " WHERE id_nilai = ?";
+		$query = "DELETE FROM " . $this->table_name . " WHERE id_candidate = ?";
 		
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);

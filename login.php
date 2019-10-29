@@ -1,12 +1,12 @@
 <?php
-include_once 'includes/config.php';
+include_once 'includes/Config.php';
 
 $config = new Config();
 $db = $config->getConnection();
 	
 if($_POST){
 	
-	include_once 'includes/login.inc.php';
+	include_once 'includes/Login.php';
 	$login = new Login($db);
 
 	$login->userid = $_POST['username'];

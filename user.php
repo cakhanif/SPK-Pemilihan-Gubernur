@@ -1,6 +1,6 @@
 <?php  
 include "header.php";
-include_once 'includes/user.inc.php';
+include_once 'includes/User.php';
 $pro = new User($db);
 $stmt = $pro->readAll();
 ?>

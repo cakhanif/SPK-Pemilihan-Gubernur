@@ -1,12 +1,13 @@
 <?php
-class candidate{
+class User {
 	
 	private $conn;
-	private $table_name = "candidate";
+	private $table_name = "pengguna";
 	
 	public $id;
-	public $kt;
-	public $jm;
+	public $nl;
+	public $un;
+	public $pw;
 	
 	public function __construct($db){
 		$this->conn = $db;
@@ -14,9 +15,11 @@ class candidate{
 	
 	function insert(){
 		
-		$query = "insert into ".$this->table_name." values('',?,'')";
+		$query = "insert into ".$this->table_name." values('',?,?,?)";
 		$stmt = $this->conn->prepare($query);
-		$stmt->bindParam(1, $this->kt);
+		$stmt->bindParam(1, $this->nl);
+		$stmt->bindParam(2, $this->un);
+		$stmt->bindParam(3, $this->pw);
 		
 		if($stmt->execute()){
 			return true;
@@ -28,7 +31,7 @@ class candidate{
 	
 	function readAll(){
 
-		$query = "SELECT * FROM ".$this->table_name." ORDER BY id_candidate ASC";
+		$query = "SELECT * FROM ".$this->table_name." ORDER BY id_pengguna ASC";
 		$stmt = $this->conn->prepare( $query );
 		$stmt->execute();
 		
@@ -38,7 +41,7 @@ class candidate{
 	// used when filling up the update product form
 	function readOne(){
 		
-		$query = "SELECT * FROM " . $this->table_name . " WHERE id_candidate=? LIMIT 0,1";
+		$query = "SELECT * FROM " . $this->table_name . " WHERE id_pengguna=? LIMIT 0,1";
 
 		$stmt = $this->conn->prepare( $query );
 		$stmt->bindParam(1, $this->id);
@@ -46,8 +49,10 @@ class candidate{
 
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		
-		$this->id = $row['id_candidate'];
-		$this->kt = $row['nama_candidate'];
+		$this->id = $row['id_pengguna'];
+		$this->nl = $row['nama_lengkap'];
+		$this->un = $row['username'];
+		$this->pw = $row['password'];
 	}
 	
 	// update the product
@@ -56,13 +61,17 @@ class candidate{
 		$query = "UPDATE 
 					" . $this->table_name . " 
 				SET 
-					nama_candidate = :kt
+					nama_lengkap = :nm, 
+					username = :un, 
+					password = :ps
 				WHERE
-					id_candidate = :id";
+					id_pengguna = :id";
 
 		$stmt = $this->conn->prepare($query);
 
-		$stmt->bindParam(':kt', $this->kt);
+		$stmt->bindParam(':nm', $this->nl);
+		$stmt->bindParam(':un', $this->un);
+		$stmt->bindParam(':ps', $this->pw);
 		$stmt->bindParam(':id', $this->id);
 		
 		// execute the query
@@ -76,7 +85,7 @@ class candidate{
 	// delete the product
 	function delete(){
 	
-		$query = "DELETE FROM " . $this->table_name . " WHERE id_candidate = ?";
+		$query = "DELETE FROM " . $this->table_name . " WHERE id_pengguna = ?";
 		
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);

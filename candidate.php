@@ -1,7 +1,7 @@
 <?php
 include_once 'header.php';
-include_once 'includes/candidate.inc.php';
-$pro = new candidate($db);
+include_once 'includes/Candidate.php';
+$pro = new Candidate($db);
 $stmt = $pro->readAll();
 ?>
 	<div class="row">

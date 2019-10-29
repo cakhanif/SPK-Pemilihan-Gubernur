@@ -1,5 +1,5 @@
 <?php
-class Config{
+class Config {
 	
 	private $host = "localhost";
 	private $db_name = "dbspk";

@@ -1,7 +1,7 @@
 <?php
 include_once 'header.php';
-include_once 'includes/criteria.inc.php';
-$pro = new criteria($db);
+include_once 'includes/Criteria.php';
+$pro = new Criteria($db);
 $stmt = $pro->readAll();
 ?>
 	<div class="row">

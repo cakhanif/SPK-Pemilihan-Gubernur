@@ -1,12 +1,12 @@
 <?php
 include_once 'header.php';
-include_once 'includes/value.inc.php';
-$pgn = new value($db);
+include_once 'includes/Value.php';
+$pgn = new Value($db);
 
 $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing ID.');
 
-include_once 'includes/criteria.inc.php';
-$eks = new criteria($db);
+include_once 'includes/Criteria.php';
+$eks = new Criteria($db);
 
 $eks->id = $id;
 

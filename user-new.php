@@ -2,7 +2,7 @@
 include_once 'header.php';
 if($_POST){
     
-    include_once 'includes/user.inc.php';
+    include_once 'includes/User.php';
     $eks = new User($db);
 
     $eks->nl = $_POST['nl'];

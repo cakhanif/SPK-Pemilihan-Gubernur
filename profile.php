@@ -1,6 +1,6 @@
 <?php
 include_once 'header.php';
-include_once 'includes/user.inc.php';
+include_once 'includes/User.php';
 $eks = new User($db);
 
 $eks->id = $_SESSION['id_pengguna'];

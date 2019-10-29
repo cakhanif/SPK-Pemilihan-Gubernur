@@ -1,12 +1,11 @@
 <?php
-class criteria{
+class Value {
 	
 	private $conn;
-	private $table_name = "criteria";
+	private $table_name = "value";
 	
 	public $id;
 	public $kt;
-	public $tp;
 	public $jm;
 	
 	public function __construct($db){
@@ -15,11 +14,10 @@ class criteria{
 	
 	function insert(){
 		
-		$query = "insert into ".$this->table_name." values('',?,?,?)";
+		$query = "insert into ".$this->table_name." values('',?,?)";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->kt);
-		$stmt->bindParam(2, $this->tp);
-		$stmt->bindParam(3, $this->jm);
+		$stmt->bindParam(2, $this->jm);
 		
 		if($stmt->execute()){
 			return true;
@@ -31,7 +29,7 @@ class criteria{
 	
 	function readAll(){
 
-		$query = "SELECT * FROM ".$this->table_name." ORDER BY id_kriteria ASC";
+		$query = "SELECT * FROM ".$this->table_name." ORDER BY id_nilai ASC";
 		$stmt = $this->conn->prepare( $query );
 		$stmt->execute();
 		
@@ -41,7 +39,7 @@ class criteria{
 	// used when filling up the update product form
 	function readOne(){
 		
-		$query = "SELECT * FROM " . $this->table_name . " WHERE id_kriteria=? LIMIT 0,1";
+		$query = "SELECT * FROM " . $this->table_name . " WHERE id_nilai=? LIMIT 0,1";
 
 		$stmt = $this->conn->prepare( $query );
 		$stmt->bindParam(1, $this->id);
@@ -49,10 +47,9 @@ class criteria{
 
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		
-		$this->id = $row['id_kriteria'];
-		$this->kt = $row['nama_kriteria'];
-		$this->tp = $row['tipe_kriteria'];
-		$this->jm = $row['bobot_kriteria'];
+		$this->id = $row['id_nilai'];
+		$this->kt = $row['ket_nilai'];
+		$this->jm = $row['jum_nilai'];
 	}
 	
 	// update the product
@@ -61,16 +58,14 @@ class criteria{
 		$query = "UPDATE 
 					" . $this->table_name . " 
 				SET 
-					nama_kriteria = :kt,
-					tipe_kriteria = :tp,  
-					bobot_kriteria = :jm
+					ket_nilai = :kt,  
+					jum_nilai = :jm
 				WHERE
-					id_kriteria = :id";
+					id_nilai = :id";
 
 		$stmt = $this->conn->prepare($query);
 
 		$stmt->bindParam(':kt', $this->kt);
-		$stmt->bindParam(':tp', $this->tp);
 		$stmt->bindParam(':jm', $this->jm);
 		$stmt->bindParam(':id', $this->id);
 		
@@ -85,7 +80,7 @@ class criteria{
 	// delete the product
 	function delete(){
 	
-		$query = "DELETE FROM " . $this->table_name . " WHERE id_kriteria = ?";
+		$query = "DELETE FROM " . $this->table_name . " WHERE id_nilai = ?";
 		
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);

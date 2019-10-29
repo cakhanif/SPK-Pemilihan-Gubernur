@@ -1,15 +1,15 @@
 <?php
 include_once 'header.php';
-include_once 'includes/candidate.inc.php';
-$pgn1 = new candidate($db);
-include_once 'includes/criteria.inc.php';
-$pgn2 = new criteria($db);
-include_once 'includes/value.inc.php';
-$pgn3 = new value($db);
+include_once 'includes/Candidate.php';
+$pgn1 = new Candidate($db);
+include_once 'includes/Criteria.php';
+$pgn2 = new Criteria($db);
+include_once 'includes/Value.php';
+$pgn3 = new Value($db);
 if($_POST){
 	
 	include_once 'includes/ranking.inc.php';
-	$eks = new ranking($db);
+	$eks = new Ranking($db);
 
 	$eks->ia = $_POST['ia'];
 	$eks->ik = $_POST['ik'];

@@ -22,7 +22,7 @@ class PDF extends FPDF{
 	
 }
 
-include "includes/config.php";
+include "includes/Config.php";
 session_start();
 if(!isset($_SESSION['nama_lengkap'])){
 	echo "<script>location.href='index.php'</script>";
@@ -30,19 +30,19 @@ if(!isset($_SESSION['nama_lengkap'])){
 $config = new Config();
 $db = $config->getConnection();
 
-include_once 'includes/candidate.inc.php';
-$pro1 = new candidate($db);
+include_once 'includes/Candidate.php';
+$pro1 = new Candidate($db);
 $stmt1 = $pro1->readAll();
 $stmt1x = $pro1->readAll();
 $stmt1y = $pro1->readAll();
-include_once 'includes/criteria.inc.php';
-$pro2 = new criteria($db);
+include_once 'includes/Criteria.php';
+$pro2 = new Criteria($db);
 $stmt2 = $pro2->readAll();
 $stmt2x = $pro2->readAll();
 $stmt2y = $pro2->readAll();
 $stmt2yx = $pro2->readAll();
 include_once 'includes/ranking.inc.php';
-$pro = new ranking($db);
+$pro = new Ranking($db);
 $stmt = $pro->readKhusus();
 $stmtx = $pro->readKhusus();
 $stmty = $pro->readKhusus();

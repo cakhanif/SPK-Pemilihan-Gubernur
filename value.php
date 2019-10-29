@@ -1,7 +1,7 @@
 <?php
 include_once 'header.php';
-include_once 'includes/value.inc.php';
-$pro = new value($db);
+include_once 'includes/Value.php';
+$pro = new Value($db);
 $stmt = $pro->readAll();
 ?>
 	<div class="row">

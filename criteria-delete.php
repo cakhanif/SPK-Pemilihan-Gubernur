@@ -1,10 +1,10 @@
 <?php
-include_once "includes/config.php";
+include_once "includes/Config.php";
 $database = new Config();
 $db = $database->getConnection();
 
-include_once 'includes/criteria.inc.php';
-$pro = new criteria($db);
+include_once 'includes/Criteria.php';
+$pro = new Criteria($db);
 $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing ID.');
 $pro->id = $id;
 	

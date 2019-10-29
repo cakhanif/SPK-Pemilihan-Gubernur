@@ -1,5 +1,5 @@
 <?php
-class ranking{
+class Ranking {
 	
 	private $conn;
 	private $table_name = "ranking";

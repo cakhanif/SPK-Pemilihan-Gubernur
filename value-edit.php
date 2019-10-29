@@ -2,8 +2,8 @@
 include_once 'header.php';
 $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing ID.');
 
-include_once 'includes/value.inc.php';
-$eks = new value($db);
+include_once 'includes/Value.php';
+$eks = new Value($db);
 
 $eks->id = $id;
 

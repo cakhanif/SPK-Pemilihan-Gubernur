@@ -1,13 +1,13 @@
 <?php
-class User{
+class Criteria {
 	
 	private $conn;
-	private $table_name = "pengguna";
+	private $table_name = "criteria";
 	
 	public $id;
-	public $nl;
-	public $un;
-	public $pw;
+	public $kt;
+	public $tp;
+	public $jm;
 	
 	public function __construct($db){
 		$this->conn = $db;
@@ -17,9 +17,9 @@ class User{
 		
 		$query = "insert into ".$this->table_name." values('',?,?,?)";
 		$stmt = $this->conn->prepare($query);
-		$stmt->bindParam(1, $this->nl);
-		$stmt->bindParam(2, $this->un);
-		$stmt->bindParam(3, $this->pw);
+		$stmt->bindParam(1, $this->kt);
+		$stmt->bindParam(2, $this->tp);
+		$stmt->bindParam(3, $this->jm);
 		
 		if($stmt->execute()){
 			return true;
@@ -31,7 +31,7 @@ class User{
 	
 	function readAll(){
 
-		$query = "SELECT * FROM ".$this->table_name." ORDER BY id_pengguna ASC";
+		$query = "SELECT * FROM ".$this->table_name." ORDER BY id_kriteria ASC";
 		$stmt = $this->conn->prepare( $query );
 		$stmt->execute();
 		
@@ -41,7 +41,7 @@ class User{
 	// used when filling up the update product form
 	function readOne(){
 		
-		$query = "SELECT * FROM " . $this->table_name . " WHERE id_pengguna=? LIMIT 0,1";
+		$query = "SELECT * FROM " . $this->table_name . " WHERE id_kriteria=? LIMIT 0,1";
 
 		$stmt = $this->conn->prepare( $query );
 		$stmt->bindParam(1, $this->id);
@@ -49,10 +49,10 @@ class User{
 
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		
-		$this->id = $row['id_pengguna'];
-		$this->nl = $row['nama_lengkap'];
-		$this->un = $row['username'];
-		$this->pw = $row['password'];
+		$this->id = $row['id_kriteria'];
+		$this->kt = $row['nama_kriteria'];
+		$this->tp = $row['tipe_kriteria'];
+		$this->jm = $row['bobot_kriteria'];
 	}
 	
 	// update the product
@@ -61,17 +61,17 @@ class User{
 		$query = "UPDATE 
 					" . $this->table_name . " 
 				SET 
-					nama_lengkap = :nm, 
-					username = :un, 
-					password = :ps
+					nama_kriteria = :kt,
+					tipe_kriteria = :tp,  
+					bobot_kriteria = :jm
 				WHERE
-					id_pengguna = :id";
+					id_kriteria = :id";
 
 		$stmt = $this->conn->prepare($query);
 
-		$stmt->bindParam(':nm', $this->nl);
-		$stmt->bindParam(':un', $this->un);
-		$stmt->bindParam(':ps', $this->pw);
+		$stmt->bindParam(':kt', $this->kt);
+		$stmt->bindParam(':tp', $this->tp);
+		$stmt->bindParam(':jm', $this->jm);
 		$stmt->bindParam(':id', $this->id);
 		
 		// execute the query
@@ -85,7 +85,7 @@ class User{
 	// delete the product
 	function delete(){
 	
-		$query = "DELETE FROM " . $this->table_name . " WHERE id_pengguna = ?";
+		$query = "DELETE FROM " . $this->table_name . " WHERE id_kriteria = ?";
 		
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);

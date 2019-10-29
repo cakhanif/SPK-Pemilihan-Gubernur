@@ -1,14 +1,14 @@
 <?php
 include_once 'header.php';
-include_once 'includes/value.inc.php';
-$pro3 = new value($db);
+include_once 'includes/Value.php';
+$pro3 = new Value($db);
 $stmt3 = $pro3->readAll();
-include_once 'includes/candidate.inc.php';
-$pro1 = new candidate($db);
+include_once 'includes/Candidate.php';
+$pro1 = new Candidate($db);
 $stmt1 = $pro1->readAll();
 $stmt4 = $pro1->readAll();
-include_once 'includes/criteria.inc.php';
-$pro2 = new criteria($db);
+include_once 'includes/Criteria.php';
+$pro2 = new Criteria($db);
 $stmt2 = $pro2->readAll();
 ?>
 		<div class="row">

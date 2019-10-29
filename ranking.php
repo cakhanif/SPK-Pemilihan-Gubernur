@@ -1,13 +1,13 @@
 <?php
 include_once 'header.php';
-include_once 'includes/candidate.inc.php';
-$pro1 = new candidate($db);
+include_once 'includes/Candidate.php';
+$pro1 = new Candidate($db);
 $stmt1 = $pro1->readAll();
-include_once 'includes/criteria.inc.php';
-$pro2 = new criteria($db);
+include_once 'includes/Criteria.php';
+$pro2 = new Criteria($db);
 $stmt2 = $pro2->readAll();
-include_once 'includes/ranking.inc.php';
-$pro = new ranking($db);
+include_once 'includes/Ranking.php';
+$pro = new Ranking($db);
 $stmt = $pro->readKhusus();
 ?>
 	<br/>

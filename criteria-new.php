@@ -1,11 +1,11 @@
 <?php
 include_once 'header.php';
-include_once 'includes/value.inc.php';
-$pgn = new value($db);
+include_once 'includes/Value.php';
+$pgn = new Value($db);
 if($_POST){
 	
-	include_once 'includes/criteria.inc.php';
-	$eks = new criteria($db);
+	include_once 'includes/Criteria.php';
+	$eks = new Criteria($db);
 
 	$eks->kt = $_POST['kt'];
 	$eks->tp = $_POST['tp'];

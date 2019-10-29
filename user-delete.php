@@ -1,9 +1,9 @@
 <?php
-include_once "includes/config.php";
+include_once "includes/Config.php";
 $database = new Config();
 $db = $database->getConnection();
 
-	include_once 'includes/user.inc.php';
+	include_once 'includes/User.php';
 
 	$pro = new User($db);
 	

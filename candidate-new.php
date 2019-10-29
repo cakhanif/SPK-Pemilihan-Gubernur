@@ -2,8 +2,8 @@
 include_once 'header.php';
 if($_POST){
 	
-	include_once 'includes/candidate.inc.php';
-	$eks = new candidate($db);
+	include_once 'includes/Candidate.php';
+	$eks = new Candidate($db);
 
 	$eks->kt = $_POST['kt'];
 	
